@@ -102,7 +102,18 @@ Ingress Controller
 ![ingress-controller](images/ingress-controller.png)
 ![ingress-resource](images/ingress.png)
 
+- Modify /etc/hosts file for DNS
+```
+win+R --> drivers -->etc -->hosts (open with administrator)
+```
+add
+```
+192.168.56.107 expense-app.local
+```
 - Browser View
+```
+http://expense-app.local:31362
+```
 
 ![Home-Page](images/frontendView.png)
 ![Adding-Details](images/DataStore.png)
