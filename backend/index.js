@@ -5,6 +5,8 @@ const cors = require('cors');
 const os = require('os');
 const fetch = require('node-fetch');
 const moment = require('moment');
+//Prometheus
+const promBundle = require("express-prom-bundle");
 
 const app = express();
 const port = 8080;
@@ -20,6 +22,17 @@ app.use(cors());
 app.get('/health',(req,res)=>{
     res.json("This is the health check");
 });
+
+//Prometheus metrics
+const metricsMiddleware = promBundle({
+  includeMethod: true,
+  includePath: true,
+  includeStatusCode: true,
+  promClient: {
+    collectDefaultMetrics: {}
+  }
+});
+app.use(metricsMiddleware);
 
 // ADD TRANSACTION
 app.post('/transaction', (req, res) => {
